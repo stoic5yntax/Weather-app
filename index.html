@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Climato - Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer type="module" src="./javascript/main.js"></script>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <header class="navbar flex">
+      <a href="./index.html">Climato🌤️</a>
+
+      <form class="search-container flex" id="search-form">
+        <input
+          id="search-input"
+          autocomplete="off"
+          aria-label="Search for a city"
+          placeholder="Search for a city..."
+          type="text"
+        />
+        <button id="search-btn" aria-label="Search">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+    </header>
+
+    <!-- MAIN APP -->
+    <main class="app flex fd-column">
+      <!-- Placeholder (default) -->
+      <section id="placeholder" class="placeholder flex fd-column">
+        <h2>No weather data yet 🌤️</h2>
+        <p id="placeholder-text">
+          Search above to see the weather for your city.
+        </p>
+      </section>
+
+      <!-- Weather Section (populated after search) -->
+      <section
+        id="weather-section"
+        class="weather-card--container hidden"
+      ></section>
+
+      <!-- Loader -->
+      <div id="loader" class="skeleton hidden">
+        <div class="skeleton-card flex">
+          <h2>Loading…</h2>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

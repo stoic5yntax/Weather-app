@@ -1,0 +1,259 @@
+/* IMPORTS */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap");
+
+:root {
+  --button-hover: #357abd;
+  --button-primary: #a34ae2;
+  --color-accent: #980ed8;
+  --color-bg: #0c0c0c;
+  --color-container: #282828;
+  --color-skeleton: #4f4f4f;
+  --shadow-soft: #0000001a;
+  --text-primary: #f0f0f0;
+  --text-secondary: #a5a4a4;
+}
+
+/* RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Noto Sans JP", sans-serif;
+  height: 100%;
+}
+
+body {
+  align-items: stretch;
+  background-color: var(--color-bg);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Prevent scroll on desktop; allow on mobile */
+@media (min-width: 768px) {
+  body {
+    overflow: hidden;
+  }
+}
+@media (max-width: 767px) {
+  body {
+    overflow: auto;
+  }
+}
+
+/* BASIC CONTROLS */
+a,
+i {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-family: "Comic Neue", cursive;
+  font-weight: bold;
+  outline: none;
+  text-transform: capitalize;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border: 1px solid var(--color-accent);
+}
+
+/* UTILITY */
+.fd-column {
+  flex-direction: column;
+}
+.flex {
+  display: flex;
+}
+.hidden {
+  display: none !important;
+}
+
+/* NAVBAR */
+.navbar {
+  align-items: center;
+  background-color: var(--color-bg);
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+}
+.navbar a {
+  font-family: "Comic Neue", cursive;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+.search-container {
+  align-items: center;
+  width: 25%;
+}
+.search-container button {
+  color: var(--text-secondary);
+  margin-left: -1.85rem;
+}
+.search-container input {
+  background: var(--color-container);
+  border-radius: 8px;
+  caret-color: var(--color-accent);
+  padding: 0.85rem;
+  width: 100%;
+}
+
+/* APP (main area under header) */
+.app {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  padding: 0 2rem;
+  width: 100vw;
+}
+
+/* PLACEHOLDER */
+.placeholder {
+  align-items: center;
+  color: var(--text-secondary);
+  gap: 1rem;
+  height: 80%;
+  justify-content: center;
+  text-align: center;
+}
+.placeholder h2 {
+  color: var(--text-primary);
+  font-size: 2rem;
+  font-weight: bold;
+}
+.placeholder p {
+  font-size: 1.1rem;
+}
+
+/* WEATHER CARD */
+.weather-card--container {
+  background-color: var(--color-container);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px var(--shadow-soft);
+  margin: 0 auto;
+  max-height: calc(100vh - 140px); /* leaves room for header + padding */
+  max-width: 100vw;
+  min-width: 85%;
+  opacity: 0;
+  overflow-y: none;
+  padding: 2rem;
+  transform: translateY(20px);
+  width: 100%;
+}
+.weather-card--container.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.4s ease-in-out;
+}
+
+.weather-details {
+  justify-content: space-between;
+  padding: 1rem;
+}
+.location {
+  gap: 0.5rem;
+}
+.location img {
+  height: 64px;
+  width: 64px;
+}
+.location p {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* MAIN INFO */
+.info {
+  gap: 1rem;
+  padding: 2rem 0;
+}
+.info h1 {
+  font-family: "Comic Neue", cursive;
+  font-size: 4rem;
+  font-weight: bold;
+}
+.info p {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+.info span {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+/* ADDITIONAL INFO (smaller columns) */
+.additional-info {
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.additional-info h3 {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 400;
+}
+.info-element {
+  gap: 0.25rem;
+}
+
+/* LOADER */
+.skeleton {
+  display: flex;
+  padding: 2rem;
+  position: absolute;
+  right: 0.25rem;
+  top: 5rem;
+  width: 100%;
+}
+.skeleton-card {
+  align-items: center;
+  animation: pulse 2s ease infinite;
+  background: linear-gradient(
+    -90deg,
+    var(--color-skeleton) 0%,
+    #737373 50%,
+    var(--color-skeleton) 100%
+  );
+  background-size: 400% 400%;
+  border-radius: 16px;
+  height: 85vh;
+  justify-content: center;
+  width: 100%;
+}
+@keyframes pulse {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+/* SMALL SCREENS: make card full width and allow page scroll */
+@media (max-width: 767px) {
+  .search-container {
+    width: 60%;
+  }
+  .weather-card--container {
+    max-height: calc(100vh - 120px);
+    min-width: 100%;
+    max-width: 100%;
+    min-height: auto;
+  }
+}
